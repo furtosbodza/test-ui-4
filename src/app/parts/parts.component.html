@@ -1,0 +1,63 @@
+<div class="part-list-card">
+    <div class="card-title">
+        <h1>Alkatrész lista</h1>
+    </div>
+    <div class="part-table">
+
+      <div class="part-button-container">
+        <button mat-raised-button (click)="addData()" class="demo-button">
+          Hozzáadás
+        </button>
+        <button
+            mat-raised-button
+            [disabled]="!this.selectedPart"
+            (click)="removeData()"
+            class="demo-button">
+          Törlés
+        </button>
+      </div>
+
+    <form class="form-group" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Alkatrész név</mat-label>
+        <input matInput placeholder="Alkatrész név" formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Beszálltó</mat-label>
+        <mat-select>
+          @for (supplier of suppliers; track supplier) {
+            <mat-option [value]="supplier">{{supplier.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button (click)="onSearch()">Keresés</button>
+    </form>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Név </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- supplier Column -->
+          <ng-container matColumnDef="supplier">
+            <th mat-header-cell *matHeaderCellDef> Beszállító </th>
+            <td mat-cell *matCellDef="let element"> {{element.supplier}} </td>
+          </ng-container>
+        
+          <!-- price Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Beszerzési ár </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)" (dblclick)="navigateToEdit(row?.id)" [ngClass]="isSelected(row) ? 'selected' : ''"></tr>
+      </table>
+    </div>
+    <div class="exit-button">
+        <button (click)="logout()">Kilépés</button>
+    </div>
+ </div>

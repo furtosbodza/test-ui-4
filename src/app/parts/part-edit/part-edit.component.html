@@ -1,0 +1,11 @@
+<div class="edit-card">
+    <div class="card-title">
+        <h1>Alkatrész létrehozása / módosítása</h1>
+    </div>
+    <form class="form-group" [formGroup]="editForm" (ngSubmit)="onSave()">
+        <input type="text" name="name" placeholder="Alkatrész név" formControlName="name">
+        <input type="text" name="price" placeholder="Beszerzései ár" formControlName="price">
+        <input type="text" name="supplier" placeholder="Beszállító" formControlName="supplier">
+        <input type="submit" value="Signup">
+    </form>
+</div>
