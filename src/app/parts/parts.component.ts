@@ -137,11 +137,9 @@ export class PartsComponent implements OnInit {
   }
 
   public onSearch() {
-    console.log("onSearch");
-    /*
     if (!this.searchForm) {
       return;
-    }*/
+    }
     const searchPart: ItemSearch = {
       'name': (this.searchForm.get('name')?.value ? this.searchForm.get('name')!.value : ""),
       'supplier': (this.searchForm.get('supplier')?.value ? this.searchForm.get('supplier')!.value : "")

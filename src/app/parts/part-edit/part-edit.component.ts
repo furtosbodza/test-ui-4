@@ -34,7 +34,6 @@ export class PartEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log("constructor bizu: " + this.id);
   }
 
   ngOnInit(): void {
@@ -77,7 +76,8 @@ export class PartEditComponent implements OnInit {
           {
             next: (item) => {
               this.item = item;
-              this.addFormValue(item);
+              this.navigateToList();
+              //this.addFormValue(item);
             },
             error: (error) => {
               console.log(error);
@@ -89,7 +89,8 @@ export class PartEditComponent implements OnInit {
           {
             next: (item) => {
               this.item = item;
-              this.addFormValue(item);
+              this.navigateToList();
+              //this.addFormValue(item);
             },
             error: (error) => {
               console.log(error);
@@ -98,6 +99,10 @@ export class PartEditComponent implements OnInit {
         );
       }
     
+    }
+
+    private navigateToList() {
+      this.router.navigate(['parts/']);
     }
 
     public getItemDto() {

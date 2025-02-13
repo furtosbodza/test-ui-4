@@ -4,6 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../shared/security/auth/auth.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PartsService } from '../shared/service/item.service';
+
 
 @Component({
   selector: 'app-regist',
@@ -15,27 +17,32 @@ import { MatInputModule } from '@angular/material/input';
 export class RegistComponent {
 
   authService  =  inject(AuthService);
-  router  =  inject(Router);
+  partService = inject(PartsService);
+  router =  inject(Router);
 
-  public form = new FormGroup({
+  public registForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   })
 
   public onSave() {
-    if (!this.form.valid) {
+    if (!this.registForm.valid) {
       return;
     }
-    console.log(this.form.value);
-    this.authService.register(this.form.value)
+    console.log(this.registForm.value);
+    this.authService.register(this.registForm.value)
       .subscribe({
         next: (data: any) => {
-          console.log(data);
+          this.partService.showErrorFeedback("Sikeres regisztráció!");
           this.router.navigate(['/login']);
         },
         error: (err) => console.log(err)
       });
+  }
+
+  public back() {
+    this.router.navigate(['/login']);
   }
 
 }

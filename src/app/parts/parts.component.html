@@ -1,4 +1,55 @@
 <div class="part-list-card">
+  <div class="card-title">
+    <h1>Alkatrész lista</h1>
+  </div>
+    <form class="form-group" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <input name="email" formControlName="name" placeholder="Árucikk név">
+      <select name="countries" formControlName="supplier" placeholder="Beszállító">
+        <option [ngValue]="null">Válassz beszállítót</option>
+        @for (supplier of suppliers; track supplier) {   
+            <option [value]="supplier.name">{{ supplier.name }}</option>
+        }
+    </select>
+    <button>Keresés</button>
+  </form>
+   
+  <button  
+    (click)="addData()">Hozzáadás
+   </button>
+  <button
+    [disabled]="!this.selectedPart"
+    (click)="removeData()">
+      Törlés
+  </button>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Név </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- supplier Column -->
+    <ng-container matColumnDef="supplier">
+      <th mat-header-cell *matHeaderCellDef> Beszállító </th>
+      <td mat-cell *matCellDef="let element"> {{element.supplier}} </td>
+    </ng-container>
+  
+    <!-- price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Beszerzési ár </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)" (dblclick)="navigateToEdit(row?.id)" [ngClass]="isSelected(row) ? 'selected' : ''"></tr>
+  </table>
+  <div class="exit-button">
+    <button (click)="logout()">Kilépés</button>
+  </div>
+</div>
+
+<!--
+<div class="part-list-card">
   <form class="form-group" [formGroup]="searchForm">
     <div class="card-title">
       <h1>Alkatrész lista</h1>
@@ -35,31 +86,11 @@
       </div>
       
 
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Név </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
-        
-          <!-- supplier Column -->
-          <ng-container matColumnDef="supplier">
-            <th mat-header-cell *matHeaderCellDef> Beszállító </th>
-            <td mat-cell *matCellDef="let element"> {{element.supplier}} </td>
-          </ng-container>
-        
-          <!-- price Column -->
-          <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Beszerzési ár </th>
-            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)" (dblclick)="navigateToEdit(row?.id)" [ngClass]="isSelected(row) ? 'selected' : ''"></tr>
-      </table>
+      
     </div>
     <div class="exit-button">
         <button (click)="logout()">Kilépés</button>
     </div>
   </form>
  </div>
+-->

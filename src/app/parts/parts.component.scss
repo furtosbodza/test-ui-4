@@ -1,3 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
+:host {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 87, 241);
+}
 
 .part-list-card {
     display: flex;
@@ -8,42 +19,43 @@
     padding: 10px;
     border-radius: 10px;
     width: 40%;
+
+}
+
+.part-list-card input {
+    margin: 5px 0;
+    width: 100%;
+    background-color: #e2e2e2;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+}
+
+.part-list-card select {
+    margin: 5px 0;
+    width: 100%;
+    background-color: #e2e2e2;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+}
+
+
+
+.part-list-card button {
+    background-color: #4796ff;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    padding: 8px 15px;
+    width: 100%;
 }
 
 .card-title h1 {
     font-size: 26px;
     font-weight: bold;
 }
-
-:host {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; 
-    background-color: rgb(60, 87, 241);
-}
-
-.exit-button {
-    margin-top: 20px;
-}
-
-button {
-    padding: 20px;
-    background-color: rgba(60, 10, 107, 0.562);
-    border-radius: 10px;
-    border: 0;
-    outline: none;
-    width: 100px;
-}
-    /*
-.demo-table {
-    width: 100%;
-  }
-  
-  .demo-button-container {
-    padding-bottom: 16px;
-  }
-  
-  .demo-button + .demo-button {
-    margin-left: 8px;
-  }*/

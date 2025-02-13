@@ -26,6 +26,7 @@ export class AuthService {
     return this.httpClient.post(`${environment.apiUrl}/user/login`, data)
       .pipe(tap((result) => {
         if (result !== null) {
+          console.log("VICA result: " + result.valueOf)
           localStorage.setItem('authUser', JSON.stringify(result));
         }
       }));
