@@ -11,7 +11,7 @@
 
 }
 
-.login-card {
+.edit-card {
     display: flex;
     flex-direction: column;
     margin: 10px 10px;
@@ -23,7 +23,7 @@
 
 }
 
-.login-card input {
+.edit-card input {
     margin: 5px 0;
     width: 100%;
     background-color: #e2e2e2;
@@ -33,7 +33,7 @@
     border-radius: 4px;
 }
 
-.login-card button {
+.edit-card button {
     background-color: #4796ff;
     color: #ffffff;
     font-size: 16px;

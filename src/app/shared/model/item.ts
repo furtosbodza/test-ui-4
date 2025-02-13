@@ -1,6 +1,6 @@
 export interface Item {
-  id: number
+  id: number | null;
   name: string;
   supplier: string;
-  price: number;
+  price: string;
 }

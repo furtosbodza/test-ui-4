@@ -1,7 +1,10 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
+
+import { AppUserDto } from '../../model/appuser';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +12,12 @@ import { environment } from '../../../../environments/environment';
 export class AuthService {
 
   httpClient = inject(HttpClient);
+  router  =  inject(Router);
   //baseUrl = 'http://localhost:3000/api';
 
-  constructor() { }
-
+  constructor() { 
+  }
+ 
   register(data: any) {
     return this.httpClient.post(`${environment.apiUrl}/user/regist`, data);
   }
@@ -20,7 +25,9 @@ export class AuthService {
   login(data: any) {
     return this.httpClient.post(`${environment.apiUrl}/user/login`, data)
       .pipe(tap((result) => {
-        localStorage.setItem('authUser', JSON.stringify(result));
+        if (result !== null) {
+          localStorage.setItem('authUser', JSON.stringify(result));
+        }
       }));
   }
 

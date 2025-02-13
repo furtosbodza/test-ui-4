@@ -5,13 +5,13 @@
     </div>
     <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <!--<input matInput name="username" formControlName="username" id="username"  type="text" class="username" required/>-->
-        <input matInput name="email" type="email" formControlName="email" placeholder="Email" required>
+        <input matInput name="email" type="email" [formControlName]="'email'" placeholder="Email" required>
         <!--<div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="alert">
             <div *ngIf="loginForm.controls['email'].errors.required">
                 Please enter username
           </div>
         </div>-->
-        <input matInput type="password" formControlName="password" placeholder="Password">
+        <input matInput type="password" [formControlName]="'password'" placeholder="Password">
         <button>OK</button>
     </form>
 

@@ -29,15 +29,11 @@ export class LoginComponent {
     if (!this.loginForm.valid) {
       return;
     }
-    console.log(this.loginForm.value);
-    this.router.navigate(['/parts']);
-      /*
-      this.authService.login(this.loginForm.value).subscribe((data: any) => {
-        if (this.authService.isLoggedIn()) {
-          this.router.navigate(['/admin']);
-        }
-        console.log(data);
-      });*/
-    
+    this.authService.login(this.loginForm.value).subscribe((data: any) => {
+      if (this.authService.isLoggedIn()) {
+        this.router.navigate(['/parts']);
+      }
+      console.log(data);
+    });
   }
 }

@@ -2,10 +2,23 @@
     <div class="card-title">
         <h1>Alkatrész létrehozása / módosítása</h1>
     </div>
-    <form class="form-group" [formGroup]="editForm" (ngSubmit)="onSave()">
-        <input type="text" name="name" placeholder="Alkatrész név" formControlName="name">
-        <input type="text" name="price" placeholder="Beszerzései ár" formControlName="price">
-        <input type="text" name="supplier" placeholder="Beszállító" formControlName="supplier">
-        <input type="submit" value="Signup">
-    </form>
+    <div [formGroup]="editForm" class="container">
+        <mat-form-field class="example-full-width">
+            <mat-label>Alkatrész név</mat-label>
+            <input matInput placeholder="Alkatrész név" [formControlName]="'name'">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Beszerzési ár</mat-label>
+            <input matInput placeholder="Alkatrész név" [formControlName]="'price'">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Beszállító</mat-label>
+            <input matInput placeholder="Alkatrész név" [formControlName]="'supplier'">
+        </mat-form-field>
+        <button (click)="onSave()">Mentés</button>
+    </div>
+    <div class="exit-button">
+        <button (click)="back()">Vissza</button>
+        <button (click)="logout()">Kilépés</button>
+    </div>
 </div>

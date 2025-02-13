@@ -20,6 +20,10 @@ export const routes: Routes = [
       component: PartsComponent,
       canActivate: [authGuard]
     },
+    { path: 'create',
+      component: PartEditComponent,
+      canActivate: [authGuard]
+    },
     { path: 'part/:id',
       component: PartEditComponent,
       canActivate: [authGuard]

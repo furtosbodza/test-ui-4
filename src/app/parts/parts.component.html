@@ -1,6 +1,7 @@
 <div class="part-list-card">
+  <form class="form-group" [formGroup]="searchForm">
     <div class="card-title">
-        <h1>Alkatrész lista</h1>
+      <h1>Alkatrész lista</h1>
     </div>
     <div class="part-table">
 
@@ -16,25 +17,25 @@
           Törlés
         </button>
       </div>
-
-    <form class="form-group" [formGroup]="searchForm" (ngSubmit)="onSearch()">
-      <mat-form-field class="example-full-width">
-        <mat-label>Alkatrész név</mat-label>
-        <input matInput placeholder="Alkatrész név" formControlName="name">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Beszálltó</mat-label>
-        <mat-select>
-          @for (supplier of suppliers; track supplier) {
-            <mat-option [value]="supplier">{{supplier.name}}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button (click)="onSearch()">Keresés</button>
-    </form>
+      <div class="part-search-container">
+        <mat-form-field class="example-full-width">
+          <mat-label>Alkatrész név</mat-label>
+          <input matInput placeholder="Alkatrész név" [formControlName]="'name'">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Beszálltó</mat-label>
+          <mat-select [formControlName]="'supplier'">
+            <mat-option>Kérjük válasszon beszállítót!</mat-option>
+            <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">
+              {{ supplier.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="onSearch()">Keresés</button>
+      </div>
+      
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      
           <!-- Name Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Név </th>
@@ -60,4 +61,5 @@
     <div class="exit-button">
         <button (click)="logout()">Kilépés</button>
     </div>
+  </form>
  </div>

@@ -1,14 +1,19 @@
 <div class="signup-card">
     <div class="card-title">
         <h1>Felhasználó létrehozása</h1>
-        <span>Már be van regisztrálva? <a routerLink="/login">Belépés</a></span>
+        <!--<span>Már be van regisztrálva? <a routerLink="/login">Belépés</a></span>-->
     </div>
-    <form class="form-group" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <input type="text" name="name" placeholder="Name" formControlName="name">
-        <input type="email" name="email" placeholder="Email" formControlName="email">
-        <input type="password" name="password" placeholder="Password" formControlName="password">
-        <input type="submit" value="Signup">
-    </form>
+    <div [formGroup]="form" class="container">
+        <mat-form-field class="example-full-width">
+            <mat-label>E-mail</mat-label>
+            <input matInput placeholder="Email" [formControlName]="'email'">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Jelszó</mat-label>
+            <input matInput placeholder="Alkatrész név" [formControlName]="'password'">
+        </mat-form-field>
+        <button (click)="onSave()">Mentés</button>
+    </div>
     <div class="card-terms">
         <input type="checkbox"> <span>I have read and agree to the <a href="">Terms of Service</a></span>
     </div>
